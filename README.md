@@ -1,2 +1,3 @@
 # swarmit
-Distributed Social Media
+
+A distributed entertainment, social networking, and news website.
