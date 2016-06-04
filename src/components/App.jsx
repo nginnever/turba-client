@@ -68,7 +68,7 @@ export default React.createClass({
       activeNavigationUrl: "",
       navigationItems: [],
       storyItems: [],
-      title: "swarmit"
+      title: "turba"
     })
   },
   setSelectedItem: function(item) {
@@ -86,7 +86,12 @@ export default React.createClass({
     console.log(this.state.storyItems)
     return (
       <div>
+        <div className="logo">
+          <img src={'logo.svg'} style={{height: 50}} />
+        </div>
+        <div className="turba">
         <h1>{this.state.title}</h1>
+        </div>
         <Navigation
           activeUrl={this.state.activeNavigationUrl}
           items={this.state.navigationItems}
