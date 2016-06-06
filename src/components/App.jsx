@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Navigation from './Navigation'
-import StoryList from './StoryList'
+import Body from './Body'
 
 export default React.createClass({
   componentDidMount: function() {
@@ -20,8 +20,8 @@ export default React.createClass({
           score: 420,
           subscribers: 12,
           display_name: 'KITTERS',
-          // This should be an ipld link
-          storyItems: [
+          // This could be an ipld link
+          subItems: [
             {
               data: {
                 score: 420,
@@ -43,7 +43,7 @@ export default React.createClass({
           subscribers: 1,
           display_name: 'MROWW',
           // This should be an ipld link
-          storyItems: [
+          subItems: [
             {
               data: {
                 score: 420,
@@ -51,6 +51,15 @@ export default React.createClass({
                 url: 'www.wat.com',
                 author: 'voxeot',
                 title: 'cat yodal yoour cat'
+              }
+            },
+            {
+              data: {
+                score: 1337,
+                id: 9001,
+                url: 'www.wat.com',
+                author: 'voxeot',
+                title: 'yodal your cat ya dingus'
               }
             }
           ]
@@ -67,23 +76,33 @@ export default React.createClass({
     return ({
       activeNavigationUrl: "",
       navigationItems: [],
-      storyItems: [],
-      title: "turba"
+      subItems: [],
+      title: "turba alpha",
+      content: {
+        url: "home"
+      }
     })
   },
   setSelectedItem: function(item) {
     var _this = this
-    //console.log(item)
     // Grab data from ipfs hash for selected topic here
     
     _this.setState({
-      storyItems: item.data.storyItems,
+      subItems: item.data.subItems,
       activeNavigationUrl: item.data.url,
-      title: item.data.display_name
+      title: item.data.display_name,
+      content: {
+        url: "subView"
+      }
+    })
+  },
+  setSelectedBody: function(content) {
+    var _this = this
+    _this.setState({
+      content: content
     })
   },
   render: function() {
-    console.log(this.state.storyItems)
     return (
       <div>
         <div className="logo">
@@ -96,7 +115,10 @@ export default React.createClass({
           activeUrl={this.state.activeNavigationUrl}
           items={this.state.navigationItems}
           itemSelected={this.setSelectedItem} />
-        <StoryList items={this.state.storyItems} />
+        <Body
+          content={this.state.content}
+          items={this.state.subItems}
+          setSelectedBody={this.setSelectedBody} />
       </div>
     )
   }

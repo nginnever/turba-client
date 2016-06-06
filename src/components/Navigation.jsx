@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom'
 import NavigationItem from './NavigationItem'
 
 export default React.createClass({
-  setSelectedItem: function(item) {
-    this.props.itemSelected(item)
-  },
   render: function() {
     var items = this.props.items
       .sort(function(a, b) {
@@ -16,7 +13,7 @@ export default React.createClass({
         return (
           <NavigationItem
             item={item}
-            itemSelected={this.setSelectedItem}
+            itemSelected={this.props.itemSelected}
             key={item.data.id}
             selected={item.data.url === this.props.activeUrl} />
         )
@@ -24,7 +21,7 @@ export default React.createClass({
 
     return (
       <div className="navigation">
-        <div className="header">Navigation</div>
+        <div className="header">Turbas</div>
         <ul>
             {items}
         </ul>
