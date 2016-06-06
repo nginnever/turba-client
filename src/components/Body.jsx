@@ -1,22 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import SubList from './SubList'
 import SubListItem from './SubListItem'
 import Home from './Home'
 
 export default React.createClass({
+  mixins: [PureRenderMixin],
   render: function() {
   	let body
-  	console.log('body comp content prop: ' + this.props.content)
-  	if (this.props.content.url === 'subView') {
-  		body = <SubList items={this.props.items} setSelectedBody={this.props.setSelectedBody} />
+  	switch(this.props.content.url) {
+	  	case 'subView':
+	  	  body = <SubList items={this.props.items} setSelectedBody={this.props.setSelectedBody} />
+	  	  break
+	  	case 'home':
+	  	  body = <Home />
+	  	  break
+	  	case 'test':
+	  	  body = <SubListItem />
+	  	  break
   	}
-  	if (this.props.content.url === 'home') {
-  		body = <Home />
-  	}
-  	if (this.props.content.url === 'test') {
-  		body = <SubListItem />
-  	}
+
     return (
       <div>
         {body}

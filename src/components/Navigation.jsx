@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import NavigationItem from './NavigationItem'
 
 export default React.createClass({
+  mixins: [PureRenderMixin],
   render: function() {
     var items = this.props.items
       .sort(function(a, b) {

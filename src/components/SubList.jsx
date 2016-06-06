@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
 import AddSubListItem from './AddSubListItem'
 
 export default React.createClass({
-  upVote: function() {
-    console.log('UPVOTE!!!')
+  mixins: [PureRenderMixin],
+  vote: function(vote) {
+    if (vote === 'up') {
+      console.log('UP VOTE!!!')
+    }
+    if (vote === 'down') {
+      console.log('DOWN VOTE!!!')
+    }
   },
   viewPost: function(post) {
     const content = {
@@ -19,9 +26,9 @@ export default React.createClass({
       return (
         <tr key={item.data.id}>
           <td>
-            <button onClick={_this.upVote} className="up" ><h2>&#8593;</h2></button>
+            <p type="button" onClick={_this.vote.bind(_this, 'up')} className="up" >&#8593;</p>
             <p className="score">{item.data.score}</p>
-            <button onClick={_this.upVote} className="down"><h2>&#8595;</h2></button>
+            <p type="button" onClick={_this.vote.bind(_this, 'down')} className="down">&#8595;</p>
           </td>   
             <td>
               <div className="posts">
